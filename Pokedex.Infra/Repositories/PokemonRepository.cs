@@ -1,34 +1,44 @@
 ﻿using Pokedex.Domain.Entities;
 using Pokedex.Domain.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Pokedex.Infra.Repositories
 {
     public class PokemonRepository : IPokemonRepository
     {
+        private readonly PokedexContext pokedexContext;
+
+        public PokemonRepository(PokedexContext pokedexContext)
+        {
+            this.pokedexContext = pokedexContext;
+        }
+
         public void Alterar(Pokemon entidade)
         {
-            throw new NotImplementedException();
+            pokedexContext.Set<Pokemon>().Update(entidade);
         }
 
-        public void Cadastrar()
+        public void Cadastrar(Pokemon entidade)
         {
-            throw new NotImplementedException();
+            pokedexContext.Set<Pokemon>().Add(entidade);
         }
 
-        public void Excluir(Guid IdeForExclusao)
+        public void Excluir(Guid Id)
         {
-            throw new NotImplementedException();
+            Pokemon pokeToDelete = GetById(Id);
+            pokedexContext.Set<Pokemon>().Remove(pokeToDelete);
         }
 
-        public void GetById(Guid IdForList)
+        public Pokemon GetById(Guid Id)
         {
-            throw new NotImplementedException();
+            return pokedexContext.Set<Pokemon>().Where(i => i.Id.Equals(Id)).FirstOrDefault();
         }
 
-        public void List()
+        public List<Pokemon> ListAll()
         {
-            throw new NotImplementedException();
+            return pokedexContext.Set<Pokemon>().ToList();
         }
     }
 }

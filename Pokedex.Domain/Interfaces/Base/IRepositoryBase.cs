@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Pokedex.Domain.Interfaces.Base
 {
     public interface IRepositoryBase<T> where T : class
     {
-        public void Cadastrar();
+        public void Cadastrar(T entidade);
         public void Alterar(T entidade);
-        public void Excluir(Guid IdeForExclusao);
-        public void GetById(Guid IdForList);
-        public void List();
+        public void Excluir(Guid Id);
+        public T GetById(Guid Id);
+        public List<T> ListAll();
     }
 }
