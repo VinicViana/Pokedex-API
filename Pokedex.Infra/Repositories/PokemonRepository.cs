@@ -15,20 +15,25 @@ namespace Pokedex.Infra.Repositories
             this.pokedexContext = pokedexContext;
         }
 
-        public void Alterar(Pokemon entidade)
+        public Pokemon Alterar(Pokemon entidade)
         {
             pokedexContext.Set<Pokemon>().Update(entidade);
+            pokedexContext.SaveChanges();
+            return entidade;
         }
 
-        public void Cadastrar(Pokemon entidade)
+        public Pokemon Cadastrar(Pokemon entidade)
         {
             pokedexContext.Set<Pokemon>().Add(entidade);
+            pokedexContext.SaveChanges();
+            return entidade;
         }
 
         public void Excluir(Guid Id)
         {
             Pokemon pokeToDelete = GetById(Id);
             pokedexContext.Set<Pokemon>().Remove(pokeToDelete);
+            pokedexContext.SaveChanges();
         }
 
         public Pokemon GetById(Guid Id)

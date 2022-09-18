@@ -10,5 +10,11 @@ namespace Pokedex.Domain.Entities.Base
     {
         public Guid Id { get; set; }
         public DateTime DataCadastro { get; set; }
+
+        public Entity()
+        {
+            Id = new Guid();
+            DataCadastro = DateTime.Now;
+        }
     }
 }
