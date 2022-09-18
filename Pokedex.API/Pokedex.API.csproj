@@ -12,4 +12,9 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Pokedex.Domain\Pokedex.Domain.csproj" />
+    <ProjectReference Include="..\Pokedex.Infra\Pokedex.Infra.csproj" />
+  </ItemGroup>
+
 </Project>
